@@ -5,6 +5,16 @@ built entirely with ScriptRunner. No plugin build, no Atlassian SDK.
 
 Tested on Jira Data Center 11.3 (two-node cluster) with ScriptRunner 10.x.
 
+## Files
+
+| File | Install as |
+|------|------------|
+| `issuePresence.groovy` | REST endpoint |
+| `issuePresenceBatch.groovy` | REST endpoint |
+| `issue-presence-panel.groovy` | Fragment — Show a web panel |
+| `issue-list-badges.groovy` | Fragment — Show a web panel |
+| `issue-presence-field.groovy` | Custom scripted field |
+
 ## What it does
 
 - **Issue panel** — a list of the people currently viewing the issue, with
@@ -45,8 +55,8 @@ because a user's session is pinned to one node under sticky sessions.
 
 Jira admin → ScriptRunner → REST Endpoints → Custom endpoint, one entry each:
 
-- `rest-endpoints/issuePresence.groovy` — needed by the issue panel
-- `rest-endpoints/issuePresenceBatch.groovy` — needed by the list badges
+- `issuePresence.groovy` — needed by the issue panel
+- `issuePresenceBatch.groovy` — needed by the list badges
 
 The imports are `jakarta.ws.rs.core.*` for ScriptRunner 10.x / Jira 10+.
 For ScriptRunner 8.x/9.x switch to the `javax` variant commented out in the
@@ -62,7 +72,7 @@ ScriptRunner → Fragments → **Show a web panel**
 | Weight    | a number, e.g. `100`                        |
 | Condition | leave empty, or `true`                      |
 | Menu text | the panel heading, e.g. `Who is online`     |
-| Provider  | `fragments/issue-presence-panel.groovy`     |
+| Provider  | `issue-presence-panel.groovy`               |
 
 Two things that cost time if you get them wrong:
 
@@ -74,7 +84,7 @@ Two things that cost time if you get them wrong:
 ### 3. List badges (optional)
 
 Another **Show a web panel** fragment, provider
-`fragments/issue-list-badges.groovy`, at any location that renders on the
+`issue-list-badges.groovy`, at any location that renders on the
 issue search page. Which locations exist in your Jira version is shown by the
 Fragment Locator in ScriptRunner. The script renders nothing visible and does
 nothing when it finds no issue links, so an unobtrusive location is fine.
@@ -82,7 +92,7 @@ nothing when it finds no issue links, so an unobtrusive location is fine.
 ### 4. Scripted field (optional)
 
 ScriptRunner → Fields → Custom scripted field, template **Text Field
-(multi-line)**, provider `fields/issue-presence-field.groovy`.
+(multi-line)**, provider `issue-presence-field.groovy`.
 
 Set **no searcher**. With one, the field is evaluated on every reindex and
 stale values land in the index.
