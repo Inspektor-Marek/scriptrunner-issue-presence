@@ -3,7 +3,7 @@
 Shows who currently has a Jira issue open — a "who is viewing this" indicator,
 built entirely with ScriptRunner. No plugin build, no Atlassian SDK.
 
-Tested on Jira Data Center 10.3 (two-node cluster) with ScriptRunner 10.x.
+Tested on Jira Data Center 11.3 (two-node cluster) with ScriptRunner 10.x.
 
 ## What it does
 
