@@ -1,4 +1,4 @@
-# Issue Presence for Jira Data Center
+# Issue Presence for Jira Data Center Service Management
 
 Shows who currently has a Jira issue open — a "who is viewing this" indicator,
 built entirely with ScriptRunner. No plugin build, no Atlassian SDK.
